@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyPars = require('body-parser');
+const config = require('./src/config/config');
 
 const server = express();
 server.set('view engine', 'ejs');
@@ -25,4 +26,4 @@ server.post('/create', (req, res) => {
     // res.render(`index`, {date_1: count, arr_1: arr});
     res.redirect('/');
 });
-server.listen(3001);
+server.listen(config.PORT, '127.0.0.1', () => console.log(`Start server listen :: 127.0.0.1 : ${config.PORT}`));
