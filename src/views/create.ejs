@@ -5,17 +5,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>index.ejs</title>
+    <title>create.ejs</title>
 </head>
 <body>
 <h1>
-    <a href="create">Add</a>
+    <div>create.ejs <%= date_1 %></div>
 </h1>
-<br>
-<ul>
-    <% arr_1.forEach(function(item){ %>
-        <li><%= item %></li>
-    <% }); %>
-</ul>
+<form action="" method="post">
+    <input type="text" name="text">
+    <button type="submit">Submit It</button>
+</form>
 </body>
 </html>
