@@ -2,7 +2,7 @@ const config = require('../config/config');
 const mongoose = require('mongoose');
 
 const options = {
-    useMongoClient: true,
+    useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -16,7 +16,6 @@ const options = {
     socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
     family: 4 // Use IPv4, skip trying IPv6
 };
-mongoose.connect(config.mongoUrl, options);
 
 module.exports = function () {
     return new Promise((resolve, reject) => {
@@ -24,9 +23,9 @@ module.exports = function () {
         mongoose.set('debug', true);
         mongoose.connection
             .on('error', (error) => reject(error))
-            .on('close', console.log('|DB is closed|'))
+            .on('close', () => console.log('|DB is closed|'))
             .on('open', () => resolve(mongoose.connections[0]));
-
+        process.c_connections = mongoose.connections[0];
         mongoose.connect(config.mongoUrl, options);
     })
 };
