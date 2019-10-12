@@ -25,7 +25,7 @@ module.exports = function () {
             .on('error', (error) => reject(error))
             .on('close', () => console.log('|DB is closed|'))
             .on('open', () => resolve(mongoose.connections[0]));
-        process.c_connections = mongoose.connections[0];
+        console.log(mongoose.connections[0]);
         mongoose.connect(config.mongoUrl, options);
     })
 };

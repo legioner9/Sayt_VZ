@@ -2,6 +2,7 @@ const express = require('express');
 const bodyPars = require('body-parser');
 const config = require('../config/config');
 const database = require('../db/db');
+const Post = require('../db/models/post');
 
 const server = express();
 server.set('view engine', 'ejs');
@@ -12,7 +13,6 @@ let count = 0;
 let arr = ['ast', 'geo', 'mix'];
 
 server.get('/', (req, res) => {
-    console.log('{date_1 : count}', {arr_1: arr})
     res.render(`index`, {date_1: count, arr_1: arr});
 });
 
@@ -21,10 +21,15 @@ server.get('/create', (req, res) => {
 });
 let ech;
 server.post('/create', (req, res) => {
-    console.log('Run', `${count++}`);
-    ech = req.body.text;
-    arr.push(`${count} :: ${ech} `);
-    // res.render(`index`, {date_1: count, arr_1: arr});
+    console.log('req.body :: ', req.body)
+    let title = req.body.title;
+    let body = req.body.body;
+    // arr.push(`${count} :: ${ech} `); ADD drop to DB
+    Post.create({
+        title,
+        body,
+    })
+    // res.render(`index`, {date_1: count, arr_1: arr}); instead this redirect('/')
     res.redirect('/');
 });
 
