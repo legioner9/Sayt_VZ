@@ -13,8 +13,8 @@
 </h1>
 <br>
 <ul>
-    <% arr_1.forEach(function(item){ %>
-        <li><%= item %></li>
+    <% posts.forEach(function(post){ %>
+        <li><%=`${post.title} : ${post.body} `%></li>
     <% }); %>
 </ul>
 </body>
