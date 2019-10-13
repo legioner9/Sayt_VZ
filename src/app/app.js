@@ -9,7 +9,8 @@ const server = express();
 server.set('view engine', 'ejs');
 server.set('views', './src/views');
 server.use(bodyPars.urlencoded({extended: true}));
-server.use('/public',express.static( 'public'));
+server.use('/public', express.static('public'));
+server.use('/public', express.static('node_modules/jquery/dist'));
 
 let count = 0;
 let arr = ['ast', 'geo', 'mix'];
