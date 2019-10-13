@@ -15,7 +15,7 @@ let arr = ['ast', 'geo', 'mix'];
 server.get('/', (req, res) => {
     Post.find({}).then(posts => {
         res.render('index', {posts: posts});
-        console.log('posts :: ', posts);
+        // console.log('posts :: ', posts);
     })
     // res.render(`index`, {date_1: count, arr_1: arr});
 });
@@ -25,14 +25,12 @@ server.get('/create', (req, res) => {
 });
 // let ech;
 server.post('/create', (req, res) => {
-    console.log('req.body :: ', req.body)
     let {title, body} = req.body;
-    console.log(':::', title, body)
+    // console.log(':::', title, body)
     // arr.push(`${count} :: ${ech} `); ADD drop to DB
     Post.create({title, body,})
-        .then(post => console.log('post.id::', post.id))
+        .then(post => console.log('Success! post.id::', post.id))
         .catch(err => console.error('err ::', err));
-    ;
     // res.render(`index`, {date_1: count, arr_1: arr}); instead this redirect('/')
     res.redirect('/');
 });
