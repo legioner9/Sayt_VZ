@@ -1,6 +1,6 @@
 const app = require('./src/app/app');
 const db = require('./src/db/db');
-const config = require('./src/config/config');
+const config = require('./config');
 
 db()
     .then(info => {
